@@ -8,6 +8,7 @@
 Zhiyuan Zhao · 
 Donghao Li ·
 Tiankai Hang ·
+Zhenxi Li ·
 [**Jiale Tao**](https://scholar.google.com/citations?user=WF5DPWkAAAAJ&hl=en) · 
 [**QiXun Wang**](https://github.com/wangqixun) · 
 [**Ruihuang Li**](https://scholar.google.com/citations?user=8CfyOtQAAAAJ&hl=en) · 
