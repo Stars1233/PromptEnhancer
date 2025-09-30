@@ -272,7 +272,7 @@ If you find this project useful, please consider citing:
 ```bibtex
 @article{promptenhancer,
   title={PromptEnhancer: A Simple Approach to Enhance Text-to-Image Models via Chain-of-Thought Prompt Rewriting},
-  author={Wang, Linqing and Xing, Ximing and Cheng, Yiji and Zhao, Zhiyuan and Tao, Jiale and Wang, QiXun and Li, Ruihuang and Chen, Comi and Li, Xin and Wu, Mingrui and Deng, Xinchi and Wang, Chunyu and Lu, Qinglin},
+  author={Wang, Linqing and Xing, Ximing and Cheng, Yiji and Zhao, Zhiyuan and Donghao, Li and Tiankai, Hang and Zhenxi, Li and Tao, Jiale and Wang, QiXun and Li, Ruihuang and Chen, Comi and Li, Xin and Wu, Mingrui and Deng, Xinchi and Gu, Shuyang and Wang, Chunyu and Lu, Qinglin},
   journal={arXiv preprint arXiv:2509.04545},
   year={2025}
 }
