@@ -30,6 +30,7 @@ Tencent Hunyuan
   <a href="https://www.arxiv.org/abs/2509.04545"><img src="https://img.shields.io/badge/Paper-arXiv:2509.04545-red?logo=arxiv" alt="arXiv"></a>
   <a href="https://zhuanlan.zhihu.com/p/1949013083109459515"><img src="https://img.shields.io/badge/知乎-技术解读-0084ff?logo=zhihu" alt="Zhihu"></a>
   <a href="https://huggingface.co/tencent/HunyuanImage-2.1/tree/main/reprompt"><img src="https://img.shields.io/badge/Model-PromptEnhancer_7B-blue?logo=huggingface" alt="HuggingFace Model"></a>
+  <a href="https://huggingface.co/PromptEnhancer/PromptEnhancer-Img2img-Edit"><img src="https://img.shields.io/badge/Model-PromptEnhancer_Img2Img_Edit-blue?logo=huggingface" alt="HuggingFace Model"></a>
   <!-- <a href="https://huggingface.co/PromptEnhancer/PromptEnhancer-32B"><img src="https://img.shields.io/badge/Model-PromptEnhancer_32B-blue?logo=huggingface" alt="HuggingFace Model"></a> -->
   <a href="https://huggingface.co/datasets/PromptEnhancer/T2I-Keypoints-Eval"><img src="https://img.shields.io/badge/Benchmark-T2I_Keypoints_Eval-blue?logo=huggingface" alt="T2I-Keypoints-Eval Dataset"></a>
   <a href="https://hunyuan-promptenhancer.github.io/"><img src="https://img.shields.io/badge/Homepage-PromptEnhancer-1abc9c?logo=homeassistant&logoColor=white" alt="Homepage"></a>
@@ -46,31 +47,26 @@ Tencent Hunyuan
 
 ## Overview
 
-Hunyuan-PromptEnhancer is a prompt rewriting utility. It restructures an input prompt while preserving the original intent, producing clearer, layered, and logically consistent prompts suitable for downstream image generation or similar tasks.
+Hunyuan-PromptEnhancer is a prompt rewriting utility that **supports both Text-to-Image generation and Image-to-Image editing**. It restructures input prompts while preserving original intent, producing clearer, structured prompts for downstream image generation tasks.
 
-- Preserves intent across key elements (subject/action/quantity/style/layout/relations/attributes/text, etc.).
-- Encourages a "global–details–summary" narrative, describing primary elements first, then secondary/background elements, ending with a concise style/type summary.
-- Robust output parsing with graceful fallback: prioritizes `<answer>...</answer>`; if missing, removes `<think>...</think>` and extracts clean text; otherwise falls back to the original input.
-- Configurable inference parameters (temperature, top_p, max_new_tokens) for balancing determinism and diversity.
+**Key Features:**
+- **Dual-mode support**: Text-to-Image prompt enhancement and Image-to-Image editing instruction refinement with visual context
+- **Intent preservation**: Maintains all key elements (subject, action, style, layout, attributes, etc.) across rewriting
+- **Robust parsing**: Multi-level fallback mechanism ensures reliable output
+- **Flexible deployment**: Supports full-precision (7B/32B), quantized (GGUF), and vision-language models
 
 ## 🔥🔥🔥Updates
 
+- [2025-09-30] ✨ Release [PromptEnhancer-Img2Img Editing model](https://huggingface.co/PromptEnhancer/PromptEnhancer-Img2img-Edit).
 - [2025-09-22] 🚀 Thanks @mradermacher for adding **GGUF model support** for efficient inference with quantized models!
 - [2025-09-18] ✨ Try the [PromptEnhancer-32B](https://huggingface.co/PromptEnhancer/PromptEnhancer-32B) for higher-quality prompt enhancement!
-- [2025-09-16] Release [T2I-Keypoints-Eval dataset](https://huggingface.co/datasets/PromptEnhancer/T2I-Keypoints-Eval).
-- [2025-09-07] Release [PromptEnhancer-7B model](https://huggingface.co/tencent/HunyuanImage-2.1/tree/main/reprompt).
-- [2025-09-07] Release [technical report](https://arxiv.org/abs/2509.04545).
-
-## Prerequisites
-
-- **Python**: 3.8 or higher
-- **CUDA**: 11.8+ (recommended for GPU acceleration)
-- **Storage**: At least 20GB free space for models
-- **Memory**: 8GB+ RAM (16GB+ recommended for 32B models)
+- [2025-09-16] ✨ Release [T2I-Keypoints-Eval dataset](https://huggingface.co/datasets/PromptEnhancer/T2I-Keypoints-Eval).
+- [2025-09-07] ✨ Release [PromptEnhancer-7B model](https://huggingface.co/tencent/HunyuanImage-2.1/tree/main/reprompt).
+- [2025-09-07] ✨ Release [technical report](https://arxiv.org/abs/2509.04545).
 
 ## Installation
 
-### Option 1: Standard Installation (Recommended for most users)
+### Option 1: Standard Installation (Recommended)
 ```bash
 pip install -r requirements.txt
 ```
@@ -84,7 +80,8 @@ chmod +x script/install_gguf.sh && ./script/install_gguf.sh
 
 ## Model Download
 
-### 🎯 Quick Start (Recommended)
+### 🎯 Quick Start
+
 For most users, we recommend starting with the **PromptEnhancer-7B** model:
 
 ```bash
@@ -109,14 +106,16 @@ huggingface-cli download tencent/HunyuanImage-2.1/reprompt --local-dir ./models/
 
 # PromptEnhancer-32B (for highest quality)
 huggingface-cli download PromptEnhancer/PromptEnhancer-32B --local-dir ./models/promptenhancer-32b
+
+# PromptEnhancer-Img2Img-Edit (for image editing tasks)
+huggingface-cli download PromptEnhancer/PromptEnhancer-Img2img-Edit --local-dir ./models/promptenhancer-img2img-edit
 ```
 
 ### GGUF Models (Quantized - Memory Efficient)
-```bash
-# Create models directory
-mkdir -p ./models
 
-# Choose one based on your GPU memory:
+Choose one based on your GPU memory:
+
+```bash
 # Q8_0: Highest quality (35GB)
 huggingface-cli download mradermacher/PromptEnhancer-32B-GGUF PromptEnhancer-32B.Q8_0.gguf --local-dir ./models
 
@@ -131,7 +130,7 @@ huggingface-cli download mradermacher/PromptEnhancer-32B-GGUF PromptEnhancer-32B
 
 ## Quickstart
 
-### Using HunyuanPromptEnhancer
+### Using HunyuanPromptEnhancer (Text-to-Image)
 
 ```python
 from inference.prompt_enhancer import HunyuanPromptEnhancer
@@ -151,6 +150,34 @@ new_prompt = enhancer.predict(
 )
 
 print("Enhanced:", new_prompt)
+```
+
+### Using PromptEnhancerImg2Img (Image Editing)
+
+For image editing tasks where you want to enhance editing instructions based on input images:
+
+```python
+from inference.prompt_enhancer_img2img import PromptEnhancerImg2Img
+
+# Initialize the image-to-image prompt enhancer
+enhancer = PromptEnhancerImg2Img(
+    model_path="./models/your-model",
+    device_map="auto"
+)
+
+# Enhance an editing instruction with image context
+edit_instruction = "Remove the watermark from the bottom"
+image_path = "./examples/sample_image.png"
+
+enhanced_prompt = enhancer.predict(
+    edit_instruction=edit_instruction,
+    image_path=image_path,
+    temperature=0.1,
+    top_p=0.9,
+    max_new_tokens=2048
+)
+
+print("Enhanced editing prompt:", enhanced_prompt)
 ```
 
 ### Using GGUF Models (Quantized, Faster)
@@ -202,6 +229,14 @@ GGUF_MODEL_PATH="./models/PromptEnhancer-32B.Q8_0.gguf" python inference/prompt_
 | Q6_K  | 27GB | Excellent | ~27GB     | RTX 4090, RTX 5090 |
 | Q4_K_M| 20GB | Good    | ~20GB      | RTX 3090, RTX 4080 |
 
+## Usage Comparison
+
+| Model | Input Type | Use Case | Model Backend |
+|-------|------------|----------|---------------|
+| **HunyuanPromptEnhancer** | Text only | Text-to-Image generation | Transformers (7B/32B) |
+| **PromptEnhancerImg2Img** | Text + Image | Image editing tasks | Transformers (32B) |
+| **PromptEnhancerGGUF** | Text only | Memory-efficient T2I | llama.cpp (quantized) |
+
 ## Parameters
 
 ### Standard Models (Transformers)
@@ -219,6 +254,17 @@ GGUF_MODEL_PATH="./models/PromptEnhancer-32B.Q8_0.gguf" python inference/prompt_
 - `n_ctx` (int): Context window size (default: 8192, recommended: 1024 for short prompts).
 - `n_gpu_layers` (int): Number of layers to offload to GPU (-1 for all layers).
 - `verbose` (bool): Enable verbose logging from llama.cpp.
+
+### Image-to-Image Models (PromptEnhancerImg2Img)
+- `model_path` (str): Path to the pretrained Qwen2.5-VL model.
+- `device_map` (str): Device mapping for model loading (default: `auto`).
+- `predict(...)`:
+  - `edit_instruction` (str): Original editing instruction.
+  - `image_path` (str): Path to the input image file.
+  - `sys_prompt` (str): Optional system prompt (uses default if None).
+  - `temperature` (float): Sampling temperature (default: 0.1).
+  - `top_p` (float): Nucleus sampling threshold (default: 0.9).
+  - `max_new_tokens` (int): Maximum tokens to generate (default: 2048).
 
 ## Citation
 
