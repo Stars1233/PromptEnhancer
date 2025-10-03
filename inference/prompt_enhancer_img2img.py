@@ -26,10 +26,11 @@ class PromptEnhancerImg2Img:
     MAX_PIXELS = 1280 * 28 * 28
 
     # Default system prompt for image editing
-    DEFAULT_SYS_PROMPT = (
-        "请根据用户的输入图片和编辑指令,参考图片对编辑指令进行改写,"
-        "要求非编辑区域保持不变。"
-    )
+    # DEFAULT_SYS_PROMPT = (
+    #     "请根据用户的输入图片和编辑指令,参考图片对编辑指令进行改写,"
+    #     "要求非编辑区域保持不变。"
+    # )
+    DEFAULT_SYS_PROMPT = '请根据用户的输入图片和编辑指令，参考图片对编辑指令进行改写，要求非编辑区域保持不变。'
 
     def __init__(
         self,
