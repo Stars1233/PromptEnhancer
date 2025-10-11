@@ -57,6 +57,7 @@ Hunyuan-PromptEnhancer is a prompt rewriting utility that **supports both Text-t
 
 ## 🔥🔥🔥Updates
 
+- [2025-10-11] ✨ Release [PromptEnhancer-32B gradio](https://huggingface.co/spaces/PromptEnhancer/PromptEnhancer_32B).
 - [2025-09-30] ✨ Release [PromptEnhancer-Img2Img Editing model](https://huggingface.co/PromptEnhancer/PromptEnhancer-Img2img-Edit).
 - [2025-09-22] 🚀 Thanks @mradermacher for adding **GGUF model support** for efficient inference with quantized models!
 - [2025-09-18] ✨ Try the [PromptEnhancer-32B](https://huggingface.co/PromptEnhancer/PromptEnhancer-32B) for higher-quality prompt enhancement!
