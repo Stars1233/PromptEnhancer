@@ -1,4 +1,4 @@
-<div align="center">
+  <div align="center">
 
 # PromptEnhancer: A Simple Approach to Enhance Text-to-Image Models via Chain-of-Thought Prompt Rewriting
 
@@ -289,4 +289,6 @@ If you would like to leave a message for our R&D and product teams, Welcome to c
 
 ## Github Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=Hunyuan-PromptEnhancer/PromptEnhancer&type=Date)](https://www.star-history.com/#Hunyuan-PromptEnhancer/PromptEnhancer&Date)
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=Hunyuan-PromptEnhancer/PromptEnhancer&type=date&logscale&legend=top-left)](https://www.star-history.com/#Hunyuan-PromptEnhancer/PromptEnhancer&type=date&logscale&legend=top-left)
