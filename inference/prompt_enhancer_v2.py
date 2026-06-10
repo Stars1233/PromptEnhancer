@@ -41,7 +41,7 @@ class PromptEnhancerV2:
         self.model = Qwen2_5_VLForConditionalGeneration.from_pretrained(
             models_root_path,
             torch_dtype=torch.bfloat16,
-            attn_implementation="flash_attention_2",
+            # attn_implementation="flash_attention_2",
             device_map=device_map,
         )
         self.processor = AutoProcessor.from_pretrained(models_root_path)
@@ -124,7 +124,7 @@ class PromptEnhancerV2:
         return prompt_cot
 
 if __name__ == "__main__":
-    model_path = os.environ.get('MODEL_OUTPUT_PATH', "/path/to/your/qwen-model")
+    model_path = os.environ.get('MODEL_OUTPUT_PATH', "/apdcephfs_zwfy3/share_302243908/aladdinwang/001_weight/models/promptenhancer-32b")
 
     prompt_enhancer_cls = PromptEnhancerV2(
         models_root_path=model_path
