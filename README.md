@@ -292,4 +292,4 @@ If you would like to leave a message for our R&D and product teams, Welcome to c
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=Hunyuan-PromptEnhancer/PromptEnhancer&type=date&logscale&legend=top-left)](https://www.star-history.com/#Hunyuan-PromptEnhancer/PromptEnhancer&type=date&logscale&legend=top-left)
+[![Star History Chart](https://star-history.dera.page/svg?repos=Hunyuan-PromptEnhancer/PromptEnhancer&type=date&logscale&legend=top-left)](https://star-history.dera.page/#Hunyuan-PromptEnhancer/PromptEnhancer&type=date&logscale&legend=top-left)
